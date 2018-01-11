@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>vue-smart-upload</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<style>
+
+
+    body, html {
+
+    }
+
+    #app {
+
+    }
+</style>
+<body>
+<div id="app">
+    <vue-smart-upload ref="file" :class="['btn', 'btn-primary']"
+                      :data="{'name':'johnny'}"
+                      :crop="false"
+                      @imagechanged="imagechanged"
+                      @imageuploading="imageuploading"
+                      @imageuploaded="imageuploaded"
+                      :max-file-size="5242880"
+                      :is-xhr="true"
+                      :credentials="true"
+                      url="http://ta.df/api/upload_image/">
+    </vue-smart-upload>
+    {{step}}
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="dist/vue-smart-upload.js"></script>
+<script>
+    new Vue({
+        el: '#app', data:function () {
+            return {step:0,src:''}
+        },
+        mounted: function () {
+
+        },
+        methods: {
+            imagechanged() {
+                this.step += 1;
+                console.log('change')
+                // this.$refs.file.getFileBase64(function (code) {
+                //     console.log(code)
+                // })
+
+            },
+
+            imageuploading() {
+                this.step += 1;
+                console.log('loading')
+            },
+
+            imageuploaded(res) {
+                this.step += 1;
+                this.src = res.data.src;
+                console.log(res.data)
+                console.log('loaded')
+            }
+        },
+        components: {
+            VueSmartUpload: VueSmartUpload
+        }
+    })
+</script>
+</body>
+</html>
