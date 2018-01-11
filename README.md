@@ -1,5 +1,5 @@
 # vue-smart-upload
-##### upload componnent
+##### upload componnent based on http://vanthink-ued.github.io/vue-core-image-upload/
 ### Usage
 ```
 npm install vue-smart-upload --save
