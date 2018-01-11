@@ -19,21 +19,26 @@
     #app {
 
     }
+    .btn{
+        height: 100px;
+    }
 </style>
 <body>
 <div id="app">
-    <vue-smart-upload ref="file" :class="['btn', 'btn-primary']"
+    <vue-smart-upload ref="file" :class="['btn']"
                       :data="{'name':'johnny'}"
                       :crop="false"
                       @imagechanged="imagechanged"
                       @imageuploading="imageuploading"
                       @imageuploaded="imageuploaded"
                       :max-file-size="5242880"
-                      :is-xhr="true"
+                      :is-xhr="false"
                       :credentials="true"
                       url="http://ta.df/api/upload_image/">
+        UPLOAD
     </vue-smart-upload>
     {{step}}
+    <img :src='base64' width="100%" style="display: block" />
 </div>
 
 <script src="node_modules/vue/dist/vue.js"></script>
@@ -41,18 +46,20 @@
 <script>
     new Vue({
         el: '#app', data:function () {
-            return {step:0,src:''}
+            return {step:0,src:'',base64:''}
         },
         mounted: function () {
 
         },
         methods: {
             imagechanged() {
+                let self=this
                 this.step += 1;
                 console.log('change')
-                // this.$refs.file.getFileBase64(function (code) {
-                //     console.log(code)
-                // })
+                this.$refs.file.getFileBase64(function (code) {
+                  //  console.log(code)
+                    self.base64=code;
+                })
 
             },
 
