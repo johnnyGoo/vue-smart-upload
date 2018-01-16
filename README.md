@@ -17,7 +17,7 @@ url	String	'/crop.php'	服务端上传的地址
 text	String	'Upload Image'	你需要显示按钮的文本
 inputOfFile	String    	  'file'	上传服务端对应表单 name
 extensions	String	'png,jpg,gif'	限制的图片类型
-crop	Boolean	true	是否需要裁剪
+crop	Mixed	false/true/'local'	是否需要裁剪 local为本地前端裁切
 cropRatio	String	'1:1'	限制裁剪的形状(设置为auto表示不限制裁剪框形状)
 cropBtn	Object	{ok:'Save','cancel':'Give Up'}	按钮文本
 maxFileSize	Number	10485760(10M)	文件大小限制

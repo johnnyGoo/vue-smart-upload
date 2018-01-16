@@ -148,11 +148,11 @@
 
             getFileBase64(callback){
                 let reader = new FileReader();
-                let self = this;
+                // let self = this;
                 reader.onload = function(e) {
                     let src = e.target.result;
-                    overflowVal = document.body.style.overflow;
-                    document.body.style.overflow = 'hidden';
+                    // overflowVal = document.body.style.overflow;
+                    // document.body.style.overflow = 'hidden';
                     callback(src);
                 }
                 reader.readAsDataURL(this.files[0]);
@@ -257,7 +257,9 @@
                     this.tryAjaxUpload(() => {
                         btn.value = btn.value.replace('...','');
                         btn.disabled = false;
+                        document.body.style.overflow = overflowVal;
                     }, code ? true: false, code);
+
                 };
                 return upload;
             },

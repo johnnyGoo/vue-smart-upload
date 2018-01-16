@@ -27,12 +27,12 @@
 <div id="app">
     <vue-smart-upload ref="file" :class="['btn']"
                       :data="{'name':'johnny'}"
-                      :crop="false"
+                      crop="local"
                       @imagechanged="imagechanged"
                       @imageuploading="imageuploading"
                       @imageuploaded="imageuploaded"
                       :max-file-size="5242880"
-                      :is-xhr="false"
+                      :is-xhr="true"
                       :credentials="true"
                       url="http://ta.df/api/upload_image/">
         UPLOAD
@@ -69,9 +69,11 @@
             },
 
             imageuploaded(res) {
+                let self=this
                 this.step += 1;
                 this.src = res.data.src;
                 console.log(res.data)
+                self.base64='http://ta.df'+res.data.url;
                 console.log('loaded')
             }
         },
